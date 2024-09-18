@@ -1,4 +1,5 @@
 {:deps
- {org.clojure/clojure {:mvn/version "1.12.0"}
-  hub/wizard.toolbelt {:local/root "../wizard.toolbelt"}
-  lambdaisland/kaocha {:mvn/version "1.91.1392"}}}
+ {org.clojure/clojure        {:mvn/version "1.12.0"}
+  hub/wizard.toolbelt        {:local/root "../wizard.toolbelt"}
+  nubank/matcher-combinators {:mvn/version "3.9.1"}
+  lambdaisland/kaocha        {:mvn/version "1.91.1392"}}}

@@ -1,8 +1,10 @@
 (ns wizard.toolbelt.test
-  (:require wizard.toolbelt clojure.test)
+  (:use wizard.toolbelt)
+  (:require clojure.test wizard.toolbelt.test.matchers matcher-combinators.test)
   (:gen-class))
 
-(wizard.toolbelt/intern-all-from *ns* 'clojure.test)
+(intern-all-from *ns* 'clojure.test)
+
 ;; hacked together liberally from source
 ;; https://github.com/clojure/clojure/blob/master/src/clj/clojure/test.clj#L504
 (defmethod assert-expr 'thrown-ex-info? [msg form]
@@ -10,7 +12,8 @@
   ;; Asserts that evaluating expr throws an exception of class c.
   ;; Also asserts that the message string of the exception matches
   ;; (with re-find) the regular expression re.
-  (let [re   (it-> (nth form 1) (if (string? it) (re-pattern it) it))
+  (let [re   (nth form 1)
+        re   (cond-> re (string? re) re-pattern)
         data (nth form 2)
         body (nthnext form 3)]
     `(try ~@body
